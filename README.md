@@ -44,7 +44,7 @@ cv2.waitKey()
 import cv2
 sinchan= cv2.imread("SINCHAN.jpg")
 sinchan.shape
-doremon= cv2.imreimportad("DOREMON.jpg")
+doremon= cv2.imread("DOREMON.jpg")
 doremon.shape
 cv2.imshow("doremon", doremon)
 cv2.imshow("sinchan", sinchan)
@@ -70,19 +70,35 @@ cv2.destroyAllWindows()
 #task4.3
 import cv2
  #Take 4.3: take 2 image and combine it to form single image.
-s=cv2.imread('SINCHAN.jpg')
-d=cv2.imread('DOREMON.jpg')
+# importing the modules
+import cv2
+import numpy as np
 
-d1=d[0:275,0:500]
-s1=s[0:275,0:500]
-combine=cv2.hconcat([s1,d1])
-cv2.imshow("final_image",combine)
-cv2.waitKey()
-cv2.destroyAllWindows()
+# read all the images
+# we are going to take 4 images only
+image1=cv2.imread("SINCHAN.jpg")
+image2=cv2.imread("DOREMON.jpg")
 
-d1=d[:,0:399]
-s1=s[:,0:399]
-combine=cv2.hconcat([s1,d1])
-cv2.imshow("joined_image",combine)
-cv2.waitKey()
+
+# make all the images of same size 
+#so we will use resize function
+image1=cv2.resize(image1,(200,200))
+image2=cv2.resize(image2,(200,200))
+
+
+# Now how we will attach image with other image
+# we will create a horizontal stack of images
+# then we will add it to the vertical stack
+# let the horizontal pair be (image1,image2)
+# and (image3,image4)
+# we will use numpy stack function
+Horizontal1=np.hstack([image1,image2])
+
+
+# Now the horizontal attachment is done
+# noe vertical attachment
+
+# Show the final attachment
+cv2.imshow("Final Collage",Horizontal1)
+cv2.waitKey(0)
 cv2.destroyAllWindows()
